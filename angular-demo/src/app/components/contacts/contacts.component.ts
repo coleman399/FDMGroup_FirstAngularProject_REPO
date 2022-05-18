@@ -10,6 +10,7 @@ export class ContactsComponent implements OnInit {
 
   contacts: Contact[];
   selectedContact!: Contact;
+  favoriteContacts: Contact[] = [];
 
   constructor() {
     this.contacts = [
@@ -36,4 +37,7 @@ export class ContactsComponent implements OnInit {
     this.selectedContact = contact;
   }
 
+  addToFavorites(contact: Contact): void {
+    this.favoriteContacts.push(contact);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Contact } from 'src/app/interfaces/contact';
 
 @Component({
@@ -11,9 +11,16 @@ export class ContactDetailsComponent implements OnInit {
   @Input()
   contact!: Contact;
 
+  @Output()
+  favRequest = new EventEmitter<Contact>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addToFavorites() {
+    this.favRequest.emit(this.contact);
   }
 
 }
