@@ -1,9 +1,11 @@
-<h3>Contact Details</h3>
-<h5>
-  {{ contact.firstName }}
-  <span *ngif="contact.middleName !== 'N/A'">{{ contact.middleName }}</span
-  >{{ contact.lastName }}
-</h5>
-<h5>Phone Number: {{ contact.phoneNumber }}</h5>
-<h5>Email: {{ contact.email }}</h5>
-<button class="btn btn-primary" (click)="addToFavorites()">Add to Favorites</button>
+<div *ngIf="contact">
+  <h3>Contact Details</h3>
+  <h5>
+    {{ contact.firstName }}
+    <span *ngIf="contact.middleName !== 'N/A'">{{ contact.middleName }}</span
+    >{{ contact.lastName }}
+  </h5>
+  <h5>Phone Number: {{ contact.phoneNumber }}</h5>
+  <h5>Email: {{ contact.email }}</h5>
+  <button class="btn btn-primary" (click)="addToFavorites()">Add to Favorites</button>
+</div>

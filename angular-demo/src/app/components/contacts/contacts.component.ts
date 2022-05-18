@@ -10,22 +10,24 @@ import { ContactService } from 'src/app/services/contact.service';
 })
 export class ContactsComponent implements OnInit {
 
-  contacts: Contact[];
-  selectedContact!: Contact;
+  contacts: Contact[] = [];
   favoriteContacts: Contact[] = [];
+  selectedContactId!: number;
 
   constructor(private contactService: ContactService) {
-    this.contacts = contactService.getContacts();
+    this.contactService.getContacts().then((contacts: Contact[]) => { console.log("Contacts Received: ", JSON.stringify(contacts)), this.contacts = contacts; }, (error: Error) => { console.log("Error: ", error) });
+
+    console.log("Current Contacts: " + JSON.stringify(this.contacts));
   }
 
   ngOnInit(): void {
   }
 
-  selectContact(contact: Contact): void {
-    this.selectedContact = contact;
+  selectContact(contactId: number): void {
+    this.selectedContactId = contactId;
   }
 
-  addToFavorites(contact: Contact): void {
+  addToFavorites(contact: Contact) {
     this.favoriteContacts.push(contact);
   }
 }

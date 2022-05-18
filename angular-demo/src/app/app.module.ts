@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { ContainerComponent } from './Container/container.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './services/data.service';
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(DataService)
   ],
   providers: [],
   bootstrap: [AppComponent]
