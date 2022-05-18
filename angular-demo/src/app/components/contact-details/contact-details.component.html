@@ -1,1 +1,8 @@
-<p>contact-details works!</p>
+<h3>Contact Details</h3>
+<h5>
+  {{ contact.firstName }}
+  <span *ngif="contact.middleName !== 'N/A'">{{ contact.middleName }}</span
+  >{{ contact.lastName }}
+</h5>
+<h5>Phone Number: {{ contact.phoneNumber }}</h5>
+<h5>Email: {{ contact.email }}</h5>
