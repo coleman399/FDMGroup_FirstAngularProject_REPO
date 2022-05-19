@@ -59,4 +59,6 @@
 </div>
 <br>
 
+<button (click)="createContact(contactToCreate)">Create Contact</button>
+
 <app-contact-details *ngIf="selectedContactId" [contactId]="selectedContactId"> (favRequest)="addToFavorites($event)"></app-contact-details>

@@ -13,16 +13,21 @@ export class ContactService {
   // used to retrieve contacts from spring boot api
   // readonly BASE_URL: string = 'http://localhost:8080/api/v2/contacts';
   readonly BASE_URL: string = 'api/contacts/';
-  readonly HEADERS = new HttpHeaders({'Content-Type': 'application/json'});
+  readonly HEADERS = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private HttpClient: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getContacts(): Promise<Contact[]> {
-    return lastValueFrom(this.HttpClient.get<Contact[]>(this.BASE_URL, {headers: this.HEADERS}));
+    return lastValueFrom(this.httpClient.get<Contact[]>(this.BASE_URL, { headers: this.HEADERS }));
   }
 
   getContact(id: number) {
-    return lastValueFrom(this.HttpClient.get<Contact>(this.BASE_URL + id, { headers: this.HEADERS }));
+    return lastValueFrom(this.httpClient.get<Contact>(this.BASE_URL + id, { headers: this.HEADERS }));
+  }
+
+  createContact(contact: Contact): Promise<Contact> {
+    return lastValueFrom(this.httpClient.post<Contact>(this.BASE_URL, contact, { headers: this.HEADERS }));
+
   }
 }

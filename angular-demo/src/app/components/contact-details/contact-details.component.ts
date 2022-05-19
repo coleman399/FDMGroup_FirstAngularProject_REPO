@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Contact } from 'src/app/interfaces/contact';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -7,7 +7,7 @@ import { ContactService } from 'src/app/services/contact.service';
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.css']
 })
-export class ContactDetailsComponent implements OnInit {
+export class ContactDetailsComponent implements OnChanges {
 
   @Input()
   contactId!: number;
@@ -19,9 +19,13 @@ export class ContactDetailsComponent implements OnInit {
   constructor(private contactService: ContactService) {
   }
 
-  ngOnInit(): void {
-    this.contactService.getContact(this.contactId).then(contact => { this.contact = contact; console.log("Successfully received contact: " + JSON.stringify(contact)) }, (error: Error) => { console.log("Error: ", error) });
+  ngOnChanges(): void {
+    this.contactService.getContact(this.contactId).then(
+      (contact) => { this.contact = contact; console.log("Successfully received contact: " + JSON.stringify(contact)) },
+      (error: Error) => { console.log("Error: ", error) }
+    );
   }
+
 
   addToFavorites() {
     this.favRequest.emit(this.contact);
